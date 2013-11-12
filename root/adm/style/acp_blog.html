@@ -1,0 +1,157 @@
+<!-- INCLUDE overall_header.html -->
+
+<!-- IF S_BLOG_SETTINGS -->
+  <h1>{L_ACP_BLOG_SETTINGS_TITLE}</h1>
+  
+  <form method="post" action="{U_ACTION}">
+  	<fieldset>
+
+  		<dl>
+  			<dt><label for="blog_disable">{L_ACP_BLOG_DISABLE}</label></dt>
+  			<dd>
+  				<input type="radio" class="radio" name="blog_disable" id="blog_disable" value="1" <!-- IF BLOG_DISABLE -->checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp;
+  				<input type="radio" class="radio" name="blog_disable" id="blog_disable" value="0" <!-- IF not BLOG_DISABLE -->checked="checked"<!-- ENDIF --> /> {L_NO}
+  			</dd>
+  		</dl>
+  
+  		<dl>
+  			<dt><label for="blog_disable_msg">{L_ACP_BLOG_DISABLE_MSG}</label><br />{L_ACP_BLOG_DISABLE_MSG_EXPLAIN}</dt>
+  			<dd>
+  				<input type="text" id="blog_disable_msg" name="blog_disable_msg" value="{BLOG_DISABLE_MSG}" />
+  			</dd>
+  		</dl>
+  		
+  		<dl>
+  			<dt><label for="blog_max_chars">{L_ACP_BLOG_MAX_CHARS}</label><br />{L_ACP_BLOG_MAX_CHARS_EXPLAIN}</dt>
+  			<dd>
+  				<input type="text" size="5" id="blog_max_chars" name="blog_max_chars" value="{BLOG_MAX_CHARS}" />
+  			</dd>
+  		</dl>
+  		
+  		<dl>
+  			<dt><label for="blog_max_par">{L_ACP_BLOG_MAX_PAR}</label><br />{L_ACP_BLOG_MAX_PAR_EXPLAIN}</dt>
+  			<dd>
+  				<input type="text" size="5" id="blog_max_par" name="blog_max_par" value="{BLOG_MAX_PAR}" />
+  			</dd>
+  		</dl>
+  		
+  		<dl>
+  			<dt><label for="blog_comments_disable">{L_ACP_BLOG_COMMENTS_DISABLE}</label></dt>
+  			<dd>
+  				<input type="radio" class="radio" name="blog_comments_disable" id="blog_comments_disable" value="1" <!-- IF BLOG_COMMENTS_DISABLE -->checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp;
+  				<input type="radio" class="radio" name="blog_comments_disable" id="blog_comments_disable" value="0" <!-- IF not BLOG_COMMENTS_DISABLE -->checked="checked"<!-- ENDIF --> /> {L_NO}
+  			</dd>
+  		</dl>
+  		
+  		<dl>
+  			<dt><label for="blog_comments_chrono">{L_ACP_BLOG_COMMENTS_CHRONO}</label></dt>
+  			<dd>
+  				<input type="radio" class="radio" name="blog_comments_chrono" id="blog_comments_chrono" value="1" <!-- IF BLOG_COMMENTS_CHRONO -->checked="checked"<!-- ENDIF --> /> {L_YES} &nbsp;
+  				<input type="radio" class="radio" name="blog_comments_chrono" id="blog_comments_chrono" value="0" <!-- IF not BLOG_COMMENTS_CHRONO -->checked="checked"<!-- ENDIF --> /> {L_NO}
+  			</dd>
+  		</dl>
+  		
+  	</fieldset>
+  	
+  	<p class="submit-buttons">
+  		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+  		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+  	</p>
+  </form>
+  
+<!-- ELSEIF S_BLOG_CATS -->   
+ 
+  <h1>{L_ACP_BLOG_CATS_TITLE}</h1>
+  
+  <!-- IF S_BLOG_CATS_EDIT -->
+    <form method="post" action="{U_EDIT_CAT}">       
+    	<fieldset>
+    
+        <legend>{L_ACP_BLOG_EDIT_CAT}</legend>
+    
+    		<dl>
+    			<dt><label for="name">{L_ACP_BLOG_CAT_NAME}</label></dt>
+    			<dd><input name="name" id="name" type="text" value="{BLOG_CAT_NAME}" /></dd>
+    		</dl>
+    
+    		<input type="submit" name="submit" id="submit" value="{L_SUBMIT}" class="button1">
+    	</fieldset>
+    </form>
+    
+  <!-- ELSEIF S_BLOG_CATS_DELETE -->
+  
+    <form method="post" action="{U_DELETE_CAT}">       
+    	<fieldset>
+    
+        <legend>{L_ACP_BLOG_DELETE_CAT}</legend>
+        
+    		<dl>
+  				<dt><label for="delete_articles">{L_ACTION}</label></dt>
+  				<dd>
+    				<label><input type="radio" class="radio" name="delete_articles" id="delete_articles" value="1" checked="checked" /> {L_ACP_BLOG_DELETE_ARTICLES}</label>
+    			</dd>
+    			<dd>
+    				<label><input type="radio" class="radio" name="delete_articles" id="delete_articles" value="0" /> {L_ACP_BLOG_MOVE_ARTICLES}</label>
+    				<select name="move_cat_id" id="move_cat_id">
+     					<!-- BEGIN cats -->
+  							<!-- IF DEL_CAT_ID != cats.ID --><option value="{cats.ID}">{cats.NAME}</option><!-- ENDIF -->
+  						<!-- END cats -->
+  					</select>
+    			</dd>
+  			</dl>  
+    
+    		<input type="submit" name="submit" id="submit" value="{L_SUBMIT}" class="button1">
+    	</fieldset>
+    </form>
+    
+  <!-- ELSE -->
+  
+    <form method="post" action="{U_ADD_CAT}">       
+    	<fieldset>
+    
+        <legend>{L_ACP_BLOG_CREATE_CAT}</legend>
+    
+    		<dl>
+    			<dt><label for="name">{L_ACP_BLOG_CAT_NAME}</label></dt>
+    			<dd><input name="name" id="name" type="text" /></dd>
+    		</dl>
+    
+    		<input type="submit" name="submit" id="submit" value="{L_SUBMIT}" class="button1">
+    	</fieldset>
+    </form>
+  
+  	<table cellpadding="1" cellspacing="1">
+  		<th>{L_ACP_BLOG_CAT_NAME}</th>
+  		<th style="text-align: center;">{L_ACP_BLOG_CAT_OPTIONS}</th>
+  
+  		<!-- BEGIN cats -->
+  			<tr>
+  				<td style="width: 80%; background-color: #F9F9F9; font-size: 12px;">
+  					{cats.NAME}
+  				</td>
+  				<td style="background-color: #DCEBFE; text-align: center;">
+  					<!-- IF cats.S_FIRST_ROW && not cats.S_LAST_ROW -->
+  						{ICON_MOVE_UP_DISABLED}
+  						<a href="{cats.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+  					<!-- ELSEIF not cats.S_FIRST_ROW && not cats.S_LAST_ROW -->
+  						<a href="{cats.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+  						<a href="{cats.U_MOVE_DOWN}">{ICON_MOVE_DOWN}</a>
+  					<!-- ELSEIF cats.S_LAST_ROW && not cats.S_FIRST_ROW -->
+  						<a href="{cats.U_MOVE_UP}">{ICON_MOVE_UP}</a>
+  						{ICON_MOVE_DOWN_DISABLED}
+  					<!-- ELSE -->
+  						{ICON_MOVE_UP_DISABLED}
+  						{ICON_MOVE_DOWN_DISABLED}
+  					<!-- ENDIF -->
+  					<a href="{cats.EDIT}">{ICON_EDIT}</a>
+  					<a href="{cats.DELETE}">{ICON_DELETE}</a>
+  				</td>
+  			</tr>
+  		<!-- END cats -->
+  	</table>
+  	
+  <!-- ENDIF -->
+	
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->
