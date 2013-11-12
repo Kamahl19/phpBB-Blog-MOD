@@ -1,4 +1,4 @@
-phpBB-Blog-MOD
+phpBB Blog MOD
 ==============
 
 This MOD adds a simple blog system with categories, archives and comments. Administrator can create categories via ACP and he can set permissions to users who can post articles. You can read more about this MOD on [phpBB3Hacks.com](http://phpbb3hacks.com/modifications.php?name=Blog "phpBB Services")
